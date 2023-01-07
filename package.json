@@ -1,0 +1,32 @@
+{
+  "name": "movies-explorer",
+  "version": "1.0.0",
+  "description": "Movies Explorer Project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "lint": "npx eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vldslw/movies-explorer-api.git"
+  },
+  "author": "Vladislav Pavlov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vldslw/movies-explorer-api/issues"
+  },
+  "homepage": "https://github.com/vldslw/movies-explorer-api#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.31.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "nodemon": "^2.0.20"
+  }
+}
