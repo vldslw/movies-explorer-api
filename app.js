@@ -10,10 +10,10 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const corsOptions = {
   origin: [
     'http://localhost:3000',
-    'https://bitfilms-vldslw.nomoredomains.club',
-    'https://api.bitfilms-vldslw.nomoredomains.club',
-    'http://bitfilms-vldslw.nomoredomains.club',
-    'http://api.bitfilms-vldslw.nomoredomains.club',
+    'https://beatfilm-vldslw.nomoredomains.club',
+    'https://api.beatfilm-vldslw.nomoredomains.club',
+    'http://beatfilm-vldslw.nomoredomains.club',
+    'http://api.beatfilm-vldslw.nomoredomains.club',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   preflightContinue: false,
