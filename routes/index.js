@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { celebrate, Joi } = require('celebrate');
+const { signupValidator, signinValidator } = require('../middlewares/validators');
 const movieRouters = require('./movie');
 const userRouters = require('./user');
 const {
@@ -8,19 +8,8 @@ const {
 const auth = require('../middlewares/auth');
 const NotFoundError = require('../errors/not-found-err');
 
-router.post('/signup', celebrate({
-  body: Joi.object().keys({
-    email: Joi.string().required().email(),
-    password: Joi.string().required(),
-    name: Joi.string().min(2).max(30),
-  }),
-}), addUser);
-router.post('/signin', celebrate({
-  body: Joi.object().keys({
-    email: Joi.string().required().email(),
-    password: Joi.string().required(),
-  }),
-}), login);
+router.post('/signup', signupValidator, addUser);
+router.post('/signin', signinValidator, login);
 
 router.use(auth);
 router.use('/users', userRouters);
