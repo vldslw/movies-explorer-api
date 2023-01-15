@@ -1,6 +1,7 @@
 require('dotenv').config();
 const cors = require('cors');
 const express = require('express');
+const helmet = require('helmet');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
@@ -31,6 +32,7 @@ mongoose.connect(NODE_ENV === 'production' ? MONGO_DB : 'mongodb://localhost:270
 
 const { PORT = 3000 } = process.env;
 const app = express();
+app.use(helmet());
 
 app.use('*', cors(corsOptions));
 
