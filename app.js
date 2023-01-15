@@ -10,6 +10,7 @@ const {
 } = require('./config');
 const routes = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const { errorHandler } = require('./middlewares/errorHandler');
 
 const corsOptions = {
   origin: [
@@ -44,16 +45,6 @@ app.use(errorLogger);
 
 app.use(errors());
 
-app.use((err, req, res, next) => {
-  const { statusCode = 500, message } = err;
-
-  res
-    .status(statusCode)
-    .send({
-      message: statusCode === 500
-        ? 'На сервере произошла ошибка'
-        : message,
-    });
-});
+app.use(errorHandler);
 
 app.listen(PORT);
