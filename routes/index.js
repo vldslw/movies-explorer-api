@@ -7,6 +7,7 @@ const {
 } = require('../controllers/user');
 const auth = require('../middlewares/auth');
 const NotFoundError = require('../errors/not-found-err');
+const { pageNotFoundMsg } = require('../constants/constants');
 
 router.post('/signup', signupValidator, addUser);
 router.post('/signin', signinValidator, login);
@@ -16,7 +17,7 @@ router.use('/users', userRouters);
 router.use('/movies', movieRouters);
 
 router.use((req, res, next) => {
-  next(new NotFoundError('Страница по указанному маршруту не найдена'));
+  next(new NotFoundError(pageNotFoundMsg));
 });
 
 module.exports = router;

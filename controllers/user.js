@@ -7,6 +7,9 @@ const {
 const User = require('../models/user');
 const {
   OK,
+  incorrectDataMsg,
+  userIdNotFoundMsg,
+  existingEmailMsg,
 } = require('../constants/constants');
 const BadRequestError = require('../errors/bad-request-err');
 const NotFoundError = require('../errors/not-found-err');
@@ -32,9 +35,9 @@ module.exports.addUser = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new BadRequestError('Переданы некорректные данные при создании пользователя'));
+        next(new BadRequestError(incorrectDataMsg));
       } else if (err.code === 11000) {
-        next(new ConflictError('Пользователь с таким email уже существует'));
+        next(new ConflictError(existingEmailMsg));
       } else {
         next(err);
       }
@@ -59,7 +62,7 @@ module.exports.login = (req, res, next) => {
 module.exports.getUser = (req, res, next) => {
   User.findById(req.user._id)
     .orFail(() => {
-      throw new NotFoundError('Пользователь по указанному id не найден');
+      throw new NotFoundError(userIdNotFoundMsg);
     })
     .then((user) => res.status(OK).send(user))
     .catch(next);
@@ -73,12 +76,12 @@ module.exports.updateUser = (req, res, next) => {
     runValidators: true,
   })
     .orFail(() => {
-      throw new NotFoundError('Пользователь по указанному id не найден');
+      throw new NotFoundError(userIdNotFoundMsg);
     })
     .then((data) => res.status(OK).send(data))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new BadRequestError('Переданы некорректные данные при обновлении профиля'));
+        next(new BadRequestError(incorrectDataMsg));
       } else {
         next(err);
       }
