@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
+const { limiter } = require('./middlewares/rateLimiter');
 const {
   NODE_ENV,
   MONGO_DB,
@@ -33,6 +34,7 @@ mongoose.connect(NODE_ENV === 'production' ? MONGO_DB : 'mongodb://localhost:270
 const { PORT = 3000 } = process.env;
 const app = express();
 app.use(helmet());
+app.use(limiter);
 
 app.use('*', cors(corsOptions));
 
