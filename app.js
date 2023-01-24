@@ -34,7 +34,6 @@ mongoose.connect(NODE_ENV === 'production' ? MONGO_DB : 'mongodb://localhost:270
 const { PORT = 3000 } = process.env;
 const app = express();
 app.use(helmet());
-app.use(limiter);
 
 app.use('*', cors(corsOptions));
 
@@ -42,6 +41,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(requestLogger);
+
+app.use(limiter);
 
 app.use(routes);
 
