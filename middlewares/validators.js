@@ -1,25 +1,25 @@
 const { celebrate, Joi } = require('celebrate');
-const { urlPattern } = require('../constants/constants');
+const { urlPattern, emailPattern, namePattern } = require('../constants/constants');
 
 const signupValidator = celebrate({
   body: Joi.object().keys({
-    email: Joi.string().required().email(),
+    email: Joi.string().required().email().pattern(emailPattern),
     password: Joi.string().required(),
-    name: Joi.string().min(2).max(30),
+    name: Joi.string().min(2).max(30).pattern(namePattern),
   }),
 });
 
 const signinValidator = celebrate({
   body: Joi.object().keys({
-    email: Joi.string().required().email(),
+    email: Joi.string().required().email().pattern(emailPattern),
     password: Joi.string().required(),
   }),
 });
 
 const updateUserValidator = celebrate({
   body: Joi.object().keys({
-    email: Joi.string().required().email(),
-    name: Joi.string().min(2).max(30),
+    email: Joi.string().required().email().pattern(emailPattern),
+    name: Joi.string().min(2).max(30).pattern(namePattern),
   }),
 });
 
