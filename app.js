@@ -33,8 +33,14 @@ const corsOptions = {
   credentials: true,
 };
 
-mongoose.connect(NODE_ENV === 'production' ? MONGO_DB : 'mongodb://127.0.0.1:27017/bitfilmsdb');
-console.log(NODE_ENV === 'production' ? MONGO_DB : 'Не нашел MONGO_DB');
+// mongoose.connect(NODE_ENV === 'production' ? MONGO_DB : 'mongodb://127.0.0.1:27017/bitfilmsdb');
+console.log(`Trying to connect Mongo at '${MONGO_DB}'...`);
+mongoose.connect(NODE_ENV === 'production' ? MONGO_DB : 'mongodb://127.0.0.1:27017/bitfilmsdb')
+  .then((connection) => {
+    console.log('Database connected OK.\nConnection:');
+    console.dir(connection);
+  })
+  .catch(console.dir);
 
 const { PORT = 3000 } = process.env;
 const app = express();
