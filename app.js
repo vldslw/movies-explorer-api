@@ -35,7 +35,7 @@ const corsOptions = {
 
 // mongoose.connect(NODE_ENV === 'production' ? MONGO_DB : 'mongodb://localhost:27017/bitfilmsdb');
 // mongoose.connect(NODE_ENV === 'production' ? MONGO_DB : 'mongodb://127.0.0.1:27017/bitfilmsdb');
-mongoose.connect('mongodb://127.0.0.1:27017/bitfilmsdb');
+mongoose.connect('mongodb://localhost:27017/bitfilmsdb');
 
 const { PORT = 3000 } = process.env;
 const app = express();
