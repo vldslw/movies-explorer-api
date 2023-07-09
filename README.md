@@ -1,7 +1,7 @@
 # Проект Movies Explorer
 
 Репозиторий для приложения проекта Movies Explorer, включающий бэкенд-часть приложения со следующими возможностями: авторизации и регистрации пользователей, сохранение карточек с фильмами и информации о пользователях.
+
+Ссылка на основной репозиторий с фронтенд-частью приложения: https://github.com/vldslw/movies-explorer-frontend
   
-API размещен на Яндекс.Облаке:
-- IP 51.250.90.3
-- https://api.beatfilm-vldslw.nomoredomains.club
+API размещен на Render: https://movies-explorer-api-ni81.onrender.com

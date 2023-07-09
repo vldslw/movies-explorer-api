@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
 const { limiter } = require('./middlewares/rateLimiter');
 const {
-  // NODE_ENV,
+  NODE_ENV,
   MONGO_DB,
 } = require('./config');
 const routes = require('./routes/index');
@@ -33,16 +33,8 @@ const corsOptions = {
   credentials: true,
 };
 
-// mongoose.connect(NODE_ENV === 'production' ? MONGO_DB : 'mongodb://127.0.0.1:27017/bitfilmsdb');
-mongoose.connect(MONGO_DB, { useNewUrlParser: true, useUnifiedTopology: true });
-
-/* console.log(`Trying to connect Mongo at '${MONGO_DB}'...`);
-mongoose.connect(NODE_ENV === 'production' ? MONGO_DB : 'mongodb://127.0.0.1:27017/bitfilmsdb')
-  .then((connection) => {
-    console.log('Database connected OK.\nConnection:');
-    console.dir(connection);
-  })
-  .catch(console.dir); */
+mongoose.connect(NODE_ENV === 'production' ? MONGO_DB : 'mongodb://127.0.0.1:27017/bitfilmsdb', { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect(MONGO_DB, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const { PORT = 3000 } = process.env;
 const app = express();
